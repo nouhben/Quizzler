@@ -26,6 +26,29 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  final _questions = [
+    {
+      'question': 'question 1',
+      'answer': true,
+    },
+    {
+      'question': 'question 2',
+      'answer': false,
+    },
+    {
+      'question': 'question 3',
+      'answer': true,
+    },
+    {
+      'question': 'question 4',
+      'answer': false,
+    },
+    {
+      'question': 'question 5',
+      'answer': true,
+    },
+  ];
+  int questionIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,7 +61,8 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'Questions placeholder goes here!',
+                //Display teh question
+                _questions[questionIndex].values.first,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Montserrat',
@@ -57,6 +81,22 @@ class _QuizPageState extends State<QuizPage> {
                 color: Colors.green,
                 onPressed: () {
                   // DO THE SAME
+                  //Check the answer of the  displayed question
+                  //if it is true add a check and display another question
+                  //if not add a cross ///
+                  if (_questions[questionIndex].values.last) {
+                    //TODO: Add the check icon to the list
+                    print(_questions[questionIndex].values.last);
+                  } else {
+                    //TODO: Add the close icon to the list
+                    print(_questions[questionIndex].values.last);
+                  }
+                  setState(() {
+                    questionIndex++;
+                    if (questionIndex >= _questions.length) {
+                      questionIndex = 0;
+                    }
+                  });
                 },
                 child: Text(
                   'True',

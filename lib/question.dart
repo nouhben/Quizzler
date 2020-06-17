@@ -11,12 +11,11 @@ class Question {
 
   bool _answer;
 
-  //Question({String question, bool answer});
+  //Question(this._question, this._answer);
   Question({String question, bool answer}) {
-    this._question = question;
-    this._answer = answer;
+    _question = question;
+    _answer = answer;
   }
-
   // ignore: unnecessary_getters_setters
   bool get answer => _answer;
 

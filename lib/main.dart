@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzler/quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain _quizBrain = QuizBrain();
 void main() {
@@ -92,6 +93,26 @@ class _QuizPageState extends State<QuizPage> {
         );
       }
       _quizBrain.nextQuestion();
+      if (_quizBrain.isFinished()) {
+        _quizBrain.reset();
+        _scoreKeeper = [];
+        Alert(
+          context: context,
+          type: AlertType.success,
+          title: 'Quiz Finished',
+          desc: 'Congratulations 🎉 You failed successfuly 👌👈💦',
+          buttons: [
+            DialogButton(
+              child: Text(
+                "Close",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () => Navigator.pop(context),
+              width: 120,
+            )
+          ],
+        ).show();
+      }
     });
   }
 

@@ -84,4 +84,8 @@ class QuizBrain {
   bool isFinished() {
     return _currentQuestionNumber == _questions.length - 1;
   }
+
+  void reset() {
+    _currentQuestionNumber = 0;
+  }
 }

@@ -11,6 +11,7 @@ class Question {
 
   bool _answer;
 
+  //Question({String question, bool answer});
   Question({String question, bool answer}) {
     this._question = question;
     this._answer = answer;

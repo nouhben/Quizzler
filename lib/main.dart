@@ -90,6 +90,9 @@ class _QuizPageState extends State<QuizPage> {
             )),
       );
     }
+    setState(() {
+      _quizBrain.nextQuestion();
+    });
   }
 
   @override
@@ -134,6 +137,7 @@ class _QuizPageState extends State<QuizPage> {
                   //if (_quizBrain.get[questionIndex].answer) {
                   // if (_quizBrain.getQuestionAnswer(CurrentQuestionNumber)) {
                   checkUsersAnswer(true);
+                  /*
                   setState(() {
                     /*
                    *  CurrentQuestionNumber++;
@@ -144,6 +148,7 @@ class _QuizPageState extends State<QuizPage> {
                    * */
                     _quizBrain.nextQuestion();
                   });
+                  */
                 },
                 child: Text(
                   'True',
@@ -161,9 +166,6 @@ class _QuizPageState extends State<QuizPage> {
                 onPressed: () {
                   //TODO: Update score & change the text on the placeholder
                   checkUsersAnswer(false);
-                  setState(() {
-                    _quizBrain.nextQuestion();
-                  });
                 },
                 child: Text(
                   'False',

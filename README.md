@@ -1,10 +1,12 @@
 # quizzler
 
-A new Flutter application.
+A simple Flutter application that displays questions and options.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a fully working Flutter app that displays questions and the user has to choose whether
+the displayed question is true or false.
+This project was made while following the Flutter boot camp by Angela Yu on Lynda.com
 
 A few resources to get you started if this is your first Flutter project:
 

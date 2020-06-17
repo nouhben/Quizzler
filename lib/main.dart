@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzler/quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain _quizBrain = QuizBrain();
 void main() {
@@ -67,31 +68,48 @@ class _QuizPageState extends State<QuizPage> {
   // ignore: non_constant_identifier_names
   // int CurrentQuestionNumber = 0;
   void checkUsersAnswer(bool answer) {
-    if (_quizBrain.getQuestionAnswer() == answer) {
-      //TODO: Add the check icon to the list
-      _scoreKeeper.add(
-        Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              Icons.check,
-              color: Colors.green,
-              size: 20.0,
-            )),
-      );
-    } else {
-      //TODO: Add the close icon to the list
-      _scoreKeeper.add(
-        Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              Icons.close,
-              color: Colors.red,
-              size: 25.0,
-            )),
-      );
-    }
     setState(() {
+      if (_quizBrain.getQuestionAnswer() == answer) {
+        //TODO: Add the check icon to the list
+        _scoreKeeper.add(
+          Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(
+                Icons.check,
+                color: Colors.green,
+                size: 20.0,
+              )),
+        );
+      } else {
+        //TODO: Add the close icon to the list
+        _scoreKeeper.add(
+          Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(
+                Icons.close,
+                color: Colors.red,
+                size: 25.0,
+              )),
+        );
+      }
       _quizBrain.nextQuestion();
+      if (_quizBrain.isFinished()) {
+        Alert(
+            context: context,
+            type: AlertType.success,
+            title: 'Quiz is done',
+            desc: 'You have successfully failed 👌👈💦 ',
+            buttons: [
+              DialogButton(
+                child: Text(
+                  "FLAT",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                onPressed: () => Navigator.pop(context),
+                color: Color.fromRGBO(0, 179, 134, 1.0),
+              ),
+            ]);
+      }
     });
   }
 
@@ -111,7 +129,7 @@ class _QuizPageState extends State<QuizPage> {
                 //_questions[questionIndex].values.first,
                 // _questions[questionIndex].question,
                 //_quizBrain.questions[questionIndex].question,
-                _quizBrain.getQuestionText(),
+                _quizBrain.getQuestionText() + '\n 🤔',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Montserrat',
@@ -151,7 +169,7 @@ class _QuizPageState extends State<QuizPage> {
                   */
                 },
                 child: Text(
-                  'True',
+                  'Hell Yeah! 😎',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20.0, color: Colors.white),
                 )),
@@ -168,7 +186,7 @@ class _QuizPageState extends State<QuizPage> {
                   checkUsersAnswer(false);
                 },
                 child: Text(
-                  'False',
+                  'Oh No! 🙅🖕️️',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20.0, color: Colors.white),
                 )),

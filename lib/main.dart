@@ -80,7 +80,8 @@ class _QuizPageState extends State<QuizPage> {
                 //Display teh question
                 //_questions[questionIndex].values.first,
                 // _questions[questionIndex].question,
-                _quizBrain.questions[questionIndex].question,
+                //_quizBrain.questions[questionIndex].question,
+                _quizBrain.getQuestionText(questionIndex),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Montserrat',
@@ -103,7 +104,8 @@ class _QuizPageState extends State<QuizPage> {
                   //if it is true add a check and display another question
                   //if not add a cross ///
                   //if (_questions[questionIndex].values.last) {
-                  if (_quizBrain.questions[questionIndex].answer) {
+                  //if (_quizBrain.get[questionIndex].answer) {
+                  if (_quizBrain.getQuestionAnswer(questionIndex)) {
                     //TODO: Add the check icon to the list
                     _scoreKeeper.add(
                       Padding(
@@ -128,7 +130,7 @@ class _QuizPageState extends State<QuizPage> {
                   }
                   setState(() {
                     questionIndex++;
-                    if (questionIndex >= _quizBrain.questions.length) {
+                    if (questionIndex >= _quizBrain.numberOfQuestion) {
                       questionIndex = 0;
                       _scoreKeeper = [];
                     }

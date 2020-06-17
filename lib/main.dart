@@ -66,6 +66,32 @@ class _QuizPageState extends State<QuizPage> {
   List<Widget> _scoreKeeper = [];
   // ignore: non_constant_identifier_names
   // int CurrentQuestionNumber = 0;
+  void checkUsersAnswer(bool answer) {
+    if (_quizBrain.getQuestionAnswer() == answer) {
+      //TODO: Add the check icon to the list
+      _scoreKeeper.add(
+        Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.check,
+              color: Colors.green,
+              size: 20.0,
+            )),
+      );
+    } else {
+      //TODO: Add the close icon to the list
+      _scoreKeeper.add(
+        Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.close,
+              color: Colors.red,
+              size: 25.0,
+            )),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -107,29 +133,7 @@ class _QuizPageState extends State<QuizPage> {
                   //if (_questions[questionIndex].values.last) {
                   //if (_quizBrain.get[questionIndex].answer) {
                   // if (_quizBrain.getQuestionAnswer(CurrentQuestionNumber)) {
-                  if (_quizBrain.getQuestionAnswer()) {
-                    //TODO: Add the check icon to the list
-                    _scoreKeeper.add(
-                      Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.check,
-                            color: Colors.green,
-                            size: 20.0,
-                          )),
-                    );
-                  } else {
-                    //TODO: Add the close icon to the list
-                    _scoreKeeper.add(
-                      Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.close,
-                            color: Colors.red,
-                            size: 25.0,
-                          )),
-                    );
-                  }
+                  checkUsersAnswer(true);
                   setState(() {
                     /*
                    *  CurrentQuestionNumber++;
@@ -156,6 +160,10 @@ class _QuizPageState extends State<QuizPage> {
                 color: Colors.red,
                 onPressed: () {
                   //TODO: Update score & change the text on the placeholder
+                  checkUsersAnswer(false);
+                  setState(() {
+                    _quizBrain.nextQuestion();
+                  });
                 },
                 child: Text(
                   'False',

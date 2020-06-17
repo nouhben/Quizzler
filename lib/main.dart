@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quizzler/question.dart';
+import 'package:quizzler/quiz_brain.dart';
 
+QuizBrain _quizBrain = QuizBrain();
 void main() {
   runApp(Quizzler());
 }
@@ -27,6 +28,8 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+/*
+
   final _questions = [
     Question(question: 'Brazil has 6 football world cups?', answer: false),
     Question(question: 'Algeria is a country in Africa?', answer: true),
@@ -35,6 +38,7 @@ class _QuizPageState extends State<QuizPage> {
     Question(question: 'Flutter is a programming language?', answer: false),
     Question(question: 'Pubg is the best game ever?', answer: true),
   ];
+ */
   /*
   *  final _questions = [
     {
@@ -75,7 +79,8 @@ class _QuizPageState extends State<QuizPage> {
               child: Text(
                 //Display teh question
                 //_questions[questionIndex].values.first,
-                _questions[questionIndex].question,
+                // _questions[questionIndex].question,
+                _quizBrain.questions[questionIndex].question,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Montserrat',
@@ -98,7 +103,7 @@ class _QuizPageState extends State<QuizPage> {
                   //if it is true add a check and display another question
                   //if not add a cross ///
                   //if (_questions[questionIndex].values.last) {
-                  if (_questions[questionIndex].answer) {
+                  if (_quizBrain.questions[questionIndex].answer) {
                     //TODO: Add the check icon to the list
                     _scoreKeeper.add(
                       Padding(
@@ -123,7 +128,7 @@ class _QuizPageState extends State<QuizPage> {
                   }
                   setState(() {
                     questionIndex++;
-                    if (questionIndex >= _questions.length) {
+                    if (questionIndex >= _quizBrain.questions.length) {
                       questionIndex = 0;
                       _scoreKeeper = [];
                     }

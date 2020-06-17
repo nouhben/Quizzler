@@ -64,7 +64,8 @@ class _QuizPageState extends State<QuizPage> {
   ];
   * */
   List<Widget> _scoreKeeper = [];
-  int questionIndex = 0;
+  // ignore: non_constant_identifier_names
+  // int CurrentQuestionNumber = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -81,7 +82,7 @@ class _QuizPageState extends State<QuizPage> {
                 //_questions[questionIndex].values.first,
                 // _questions[questionIndex].question,
                 //_quizBrain.questions[questionIndex].question,
-                _quizBrain.getQuestionText(questionIndex),
+                _quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Montserrat',
@@ -105,7 +106,8 @@ class _QuizPageState extends State<QuizPage> {
                   //if not add a cross ///
                   //if (_questions[questionIndex].values.last) {
                   //if (_quizBrain.get[questionIndex].answer) {
-                  if (_quizBrain.getQuestionAnswer(questionIndex)) {
+                  // if (_quizBrain.getQuestionAnswer(CurrentQuestionNumber)) {
+                  if (_quizBrain.getQuestionAnswer()) {
                     //TODO: Add the check icon to the list
                     _scoreKeeper.add(
                       Padding(
@@ -129,11 +131,14 @@ class _QuizPageState extends State<QuizPage> {
                     );
                   }
                   setState(() {
-                    questionIndex++;
-                    if (questionIndex >= _quizBrain.numberOfQuestion) {
-                      questionIndex = 0;
+                    /*
+                   *  CurrentQuestionNumber++;
+                    if (CurrentQuestionNumber >= _quizBrain.numberOfQuestion) {
+                      CurrentQuestionNumber = 0;
                       _scoreKeeper = [];
                     }
+                   * */
+                    _quizBrain.nextQuestion();
                   });
                 },
                 child: Text(

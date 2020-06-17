@@ -9,24 +9,32 @@ class QuizBrain {
     Question(question: 'Flutter is a programming language?', answer: false),
     Question(question: 'Pubg is the best game ever?', answer: true),
   ];
-
+  int _currentQuestionNumber;
   //QuizBrain(this._questions, this._numberOfQuestion);
   QuizBrain() {
-    this._numberOfQuestion = _questions.length;
+    //this._numberOfQuestion = _questions.length;
+    this._currentQuestionNumber = 0;
   }
-  int _numberOfQuestion;
 
-  int get numberOfQuestion => _numberOfQuestion;
+  //int get numberOfQuestion => _numberOfQuestion;
 //TODO: THROw the exceptions
-  String getQuestionText(int questionNumber) {
-    return (questionNumber >= 0 && questionNumber < _questions.length)
+  String getQuestionText() {
+    /*return (_currentQuestionNumber >= 0 && questionNumber < _questions.length)
         ? _questions[questionNumber].question
-        : '';
+        : '';*/
+    return _questions[_currentQuestionNumber].question;
   }
 
   //TODO: THROw the exceptions
-  bool getQuestionAnswer(int questionNumber) =>
-      (questionNumber >= 0 && questionNumber < _questions.length)
+  bool getQuestionAnswer() => _questions[_currentQuestionNumber].answer;
+  /*(questionNumber >= 0 && questionNumber < _questions.length)
           ? _questions[questionNumber].answer
           : false;
+          */
+
+  void nextQuestion() {
+    if (_currentQuestionNumber < _questions.length - 1) {
+      _currentQuestionNumber++;
+    }
+  }
 }
